@@ -1,0 +1,23 @@
+{
+  "functions": {
+    "api/extract.js":        { "maxDuration": 45 },
+    "api/classify.js":       { "maxDuration": 45 },
+    "api/iec.js":            { "maxDuration": 15 },
+    "api/exchange.js":       { "maxDuration": 15 },
+    "api/duty.js":           { "maxDuration": 45 },
+    "api/scan-cbic.js":      { "maxDuration": 60 },
+    "api/scan-dgft.js":      { "maxDuration": 60 },
+    "api/sheets-sync.js":    { "maxDuration": 30 },
+    "api/icegateStatus.js":  { "maxDuration": 15 },
+    "api/queryDraft.js":     { "maxDuration": 45 },
+    "api/exchangeRates.js":  { "maxDuration": 15 }
+  },
+  "crons": [
+    { "path": "/api/scan-cbic", "schedule": "30 0 * * *" },
+    { "path": "/api/scan-dgft?mode=rodtep", "schedule": "0 1 * * 0" }
+  ],
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)",     "destination": "/index.html" }
+  ]
+}
