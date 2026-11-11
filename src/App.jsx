@@ -6132,12 +6132,18 @@ function BillingScreen({ user, onBack }) {
       return;
     }
     // Razorpay integration — opens payment widget
+    // Key ID comes from the VITE_RAZORPAY_KEY_ID env var (set in Vercel).
+    const razorpayKeyId = import.meta.env.VITE_RAZORPAY_KEY_ID || "";
+    if (!razorpayKeyId) {
+      alert("Online payment is not set up yet. Please contact us to upgrade your plan.");
+      return;
+    }
     if (!window.Razorpay) {
       alert("Payment gateway loading. Please try again in a moment.");
       return;
     }
     const options = {
-      key: "rzp_live_REPLACEME", // Replace with actual Razorpay key in Vercel env
+      key: razorpayKeyId,
       name: "Custom House AI",
       description: `${plan.name} Plan — Monthly`,
       amount: plan.key === "starter" ? 299900 : 699900, // paise

@@ -1,0 +1,15 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Secrets — never commit real values
+.env
+.env.*
+!.env.example
+
+# Vercel local project link
+.vercel/
+
+# OS / editor noise
+.DS_Store
+*.log
